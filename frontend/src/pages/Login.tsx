@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { useForm, FieldValues } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation } from "@tanstack/react-query";
 
@@ -19,8 +19,8 @@ export const Login: React.FC = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<LoginFormData | RegisterFormData>({
-    resolver: yupResolver(isLoginMode ? loginSchema : registerSchema),
+  } = useForm<FieldValues>({
+    resolver: yupResolver(isLoginMode ? loginSchema : registerSchema) as any,
   });
 
   const loginMutation = useMutation({
@@ -39,7 +39,7 @@ export const Login: React.FC = () => {
     },
   });
 
-  const onSubmit = (data: LoginFormData | RegisterFormData): void => {
+  const onSubmit = (data: FieldValues): void => {
     if (isLoginMode) {
       loginMutation.mutate(data as LoginFormData);
     } else {
@@ -83,7 +83,7 @@ export const Login: React.FC = () => {
                 placeholder="John Doe"
               />
               {errors.name && (
-                <p className="error-text">{errors.name.message}</p>
+                <p className="error-text">{errors.name.message as string}</p>
               )}
             </div>
           )}
@@ -100,7 +100,7 @@ export const Login: React.FC = () => {
               placeholder="you@example.com"
             />
             {errors.email && (
-              <p className="error-text">{errors.email.message}</p>
+              <p className="error-text">{errors.email.message as string}</p>
             )}
           </div>
 
@@ -116,7 +116,7 @@ export const Login: React.FC = () => {
               placeholder="••••••••"
             />
             {errors.password && (
-              <p className="error-text">{errors.password.message}</p>
+              <p className="error-text">{errors.password.message as string}</p>
             )}
           </div>
 
