@@ -1,4 +1,4 @@
-# WonderTech - Group Activity Recording Platform
+#  Group Activity Recording Platform
 
 A modern full-stack web application for conducting and recording group activities with video and audio capabilities.
 
@@ -687,12 +687,6 @@ npm run build
 - **Frontend:** Vercel, Netlify, or AWS S3 + CloudFront
 - **Backend:** AWS EC2, Heroku, or DigitalOcean
 - **Database:** AWS RDS, PlanetScale, or managed MySQL
-
----
-
-## 📝 License
-
-This project is proprietary software for WonderTech.
 
 ---
 
